@@ -1,0 +1,102 @@
+# Custom button 
+<CustButton@Button>: 
+	font_size: 30
+
+# Define id so I can refer to the Layout_calculadora 
+# class functions 
+# Display points to the entry widget 
+<Layout_calculadora>: 
+	id: calculator 
+	display1: label1
+	display2: label2
+
+	rows: 2
+	padding: 10
+	spacing: 20
+
+	
+
+	# Where input is displayed
+	BoxLayout: 
+		orientation: 'horizontal'
+		spacing: 30
+		BoxLayout: 
+			spacing: 5
+			padding: 10
+			orientation: 'vertical'
+			TextInput: 
+				id: file_a
+				font_size: 35
+				multiline: False
+				hint_text:"Nombre archivo A(txt)"
+			
+			TextInput: 
+				id: file_b
+				font_size: 35
+				multiline: False
+				hint_text:"Nombre archivo B(txt)"
+
+			TextInput: 
+				id: comando 
+				font_size: 35
+				multiline: False
+				hint_text:"Nombre del comando."
+			
+			CustButton: 
+				text: "Obtener Resultados"
+				background_color: (0.012, 0.984, 0.984, 1.0)
+				#on_press: label2.text = "STATUS: [Iniciado]"
+				on_press: calculator.filtrar(comando.text)
+				#on_press: label1.text = "STATUS: [Terminado]"
+ 	
+			Label:
+				id:label1
+				text:"STATUS: Ready to Go!"
+			
+
+
+
+			
+
+
+
+		BoxLayout: 
+			spacing: 30
+			orientation: 'horizontal'
+			BoxLayout: 
+				spacing: 5
+				padding: 10
+				orientation: 'vertical'
+				TextInput: 
+					id: linea_a 
+					font_size: 20
+					multiline: True
+					hint_text:"Linea de comando A"
+				TextInput: 
+					id: linea_b 
+					font_size: 20
+					multiline: True
+					hint_text:"Linea de comando B"
+			 
+				CustButton: 
+					text: "Nueva entradas"
+					on_press: linea_a.text = ""
+					on_press: linea_b.text = ""
+					on_press: comando.text = ""
+					on_press: label1.text = "STATUS: Ready to Go!"
+					on_press: label2.text = "STATUS: Ready to Go!"
+		
+
+				CustButton: 
+					text: "Comparar"
+					background_color: (0.012, 0.984, 0.984, 1.0)
+					
+					on_press: calculator.comparar(linea_a.text, linea_b.text)
+					#on_press: label2.text = "STATUS: [Terminado]"
+
+				Label:
+					id:label2
+					text:"STATUS: Ready to Go!"
+
+
+
